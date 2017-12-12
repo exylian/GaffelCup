@@ -1,0 +1,55 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myGamePointsLabel">Create or edit a Game Points</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!gamePoints.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="gamePoints.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_s1T1">S 1 T 1</label>
+            <input type="number" class="form-control" name="s1T1" id="field_s1T1"
+                [(ngModel)]="gamePoints.s1T1" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_s1T2">S 1 T 2</label>
+            <input type="number" class="form-control" name="s1T2" id="field_s1T2"
+                [(ngModel)]="gamePoints.s1T2" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_s2T1">S 2 T 1</label>
+            <input type="number" class="form-control" name="s2T1" id="field_s2T1"
+                [(ngModel)]="gamePoints.s2T1" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_s2T2">S 2 T 2</label>
+            <input type="number" class="form-control" name="s2T2" id="field_s2T2"
+                [(ngModel)]="gamePoints.s2T2" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_s3T1">S 3 T 1</label>
+            <input type="number" class="form-control" name="s3T1" id="field_s3T1"
+                [(ngModel)]="gamePoints.s3T1" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_s3T2">S 3 T 2</label>
+            <input type="number" class="form-control" name="s3T2" id="field_s3T2"
+                [(ngModel)]="gamePoints.s3T2" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

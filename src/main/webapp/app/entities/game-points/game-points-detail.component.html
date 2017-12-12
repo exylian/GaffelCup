@@ -1,0 +1,46 @@
+
+<div *ngIf="gamePoints">
+    <h2><span>Game Points</span> {{gamePoints.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>S 1 T 1</span></dt>
+        <dd>
+            <span>{{gamePoints.s1T1}}</span>
+        </dd>
+        <dt><span>S 1 T 2</span></dt>
+        <dd>
+            <span>{{gamePoints.s1T2}}</span>
+        </dd>
+        <dt><span>S 2 T 1</span></dt>
+        <dd>
+            <span>{{gamePoints.s2T1}}</span>
+        </dd>
+        <dt><span>S 2 T 2</span></dt>
+        <dd>
+            <span>{{gamePoints.s2T2}}</span>
+        </dd>
+        <dt><span>S 3 T 1</span></dt>
+        <dd>
+            <span>{{gamePoints.s3T1}}</span>
+        </dd>
+        <dt><span>S 3 T 2</span></dt>
+        <dd>
+            <span>{{gamePoints.s3T2}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'game-points/'+ gamePoints.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Game.
+    -->
+    <changeSet id="20171212103829-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="t1p1_id"
+                                 baseTableName="game"
+                                 constraintName="fk_game_t1p1_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contestant"/>
+
+        <addForeignKeyConstraint baseColumnNames="t1p2_id"
+                                 baseTableName="game"
+                                 constraintName="fk_game_t1p2_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contestant"/>
+
+        <addForeignKeyConstraint baseColumnNames="t2p1_id"
+                                 baseTableName="game"
+                                 constraintName="fk_game_t2p1_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contestant"/>
+
+        <addForeignKeyConstraint baseColumnNames="t2p2_id"
+                                 baseTableName="game"
+                                 constraintName="fk_game_t2p2_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contestant"/>
+
+        <addForeignKeyConstraint baseColumnNames="points_id"
+                                 baseTableName="game"
+                                 constraintName="fk_game_points_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="game_points"/>
+
+        <addForeignKeyConstraint baseColumnNames="round_id"
+                                 baseTableName="game"
+                                 constraintName="fk_game_round_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="round"/>
+
+    </changeSet>
+</databaseChangeLog>

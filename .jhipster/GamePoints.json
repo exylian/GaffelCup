@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "s1T1",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "s1T2",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "s2T1",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "s2T2",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "s3T1",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "s3T2",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20171212103830",
+    "entityTableName": "game_points",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

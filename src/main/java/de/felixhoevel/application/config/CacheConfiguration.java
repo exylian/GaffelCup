@@ -41,6 +41,10 @@ public class CacheConfiguration {
             cm.createCache(de.felixhoevel.application.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(de.felixhoevel.application.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(de.felixhoevel.application.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(de.felixhoevel.application.domain.Contestant.class.getName(), jcacheConfiguration);
+            cm.createCache(de.felixhoevel.application.domain.Round.class.getName(), jcacheConfiguration);
+            cm.createCache(de.felixhoevel.application.domain.Game.class.getName(), jcacheConfiguration);
+            cm.createCache(de.felixhoevel.application.domain.GamePoints.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

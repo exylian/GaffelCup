@@ -1,0 +1,53 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "lastName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "firstName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "eMail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "strength",
+            "fieldType": "Strength",
+            "fieldValues": "LOW,LOWMID,MID,MIDHIGH,HIGH"
+        },
+        {
+            "fieldName": "totalPoints",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "confirmed",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "confirmedAt",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "payed",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "payedAt",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "token",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171212103827",
+    "entityTableName": "contestant",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

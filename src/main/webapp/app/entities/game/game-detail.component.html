@@ -1,0 +1,66 @@
+
+<div *ngIf="game">
+    <h2><span>Game</span> {{game.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{game.status}}</span>
+        </dd>
+        <dt><span>Calculated</span></dt>
+        <dd>
+            <span>{{game.calculated}}</span>
+        </dd>
+        <dt><span>T 1 P 1</span></dt>
+        <dd>
+            <div *ngIf="game.t1P1">
+                <a [routerLink]="['/contestant', game.t1P1?.id]">{{game.t1P1?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>T 1 P 2</span></dt>
+        <dd>
+            <div *ngIf="game.t1P2">
+                <a [routerLink]="['/contestant', game.t1P2?.id]">{{game.t1P2?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>T 2 P 1</span></dt>
+        <dd>
+            <div *ngIf="game.t2P1">
+                <a [routerLink]="['/contestant', game.t2P1?.id]">{{game.t2P1?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>T 2 P 2</span></dt>
+        <dd>
+            <div *ngIf="game.t2P2">
+                <a [routerLink]="['/contestant', game.t2P2?.id]">{{game.t2P2?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Points</span></dt>
+        <dd>
+            <div *ngIf="game.points">
+                <a [routerLink]="['/game-points', game.points?.id]">{{game.points?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Round</span></dt>
+        <dd>
+            <div *ngIf="game.round">
+                <a [routerLink]="['/round', game.round?.id]">{{game.round?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'game/'+ game.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

@@ -19,13 +19,7 @@ entity Round {
 
 entity Game {
     status Status,
-    calculated Boolean,
-    t1P1 Contestant,
-    t1P2 Contestant,
-    t2P1 Contestant,
-    t2P2 Contestant,
-    points GamePoints,
-    round Round
+    calculated Boolean
 }
 
 entity GamePoints {

@@ -1,0 +1,76 @@
+<div>
+    <h2>
+        <span>Contestants</span>
+        <button class="btn btn-primary float-right jh-create-entity create-contestant" [routerLink]="['/', { outlets: { popup: ['contestant-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Contestant
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="contestants">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Last Name</span></th>
+            <th><span>First Name</span></th>
+            <th><span>E Mail</span></th>
+            <th><span>Strength</span></th>
+            <th><span>Total Points</span></th>
+            <th><span>Confirmed</span></th>
+            <th><span>Confirmed At</span></th>
+            <th><span>Payed</span></th>
+            <th><span>Payed At</span></th>
+            <th><span>Token</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let contestant of contestants ;trackBy: trackId">
+                <td><a [routerLink]="['../contestant', contestant.id ]">{{contestant.id}}</a></td>
+                <td>{{contestant.lastName}}</td>
+                <td>{{contestant.firstName}}</td>
+                <td>{{contestant.eMail}}</td>
+                <td>{{contestant.strength}}</td>
+                <td>{{contestant.totalPoints}}</td>
+                <td>{{contestant.confirmed}}</td>
+                <td>{{contestant.confirmedAt | date:'medium'}}</td>
+                <td>{{contestant.payed}}</td>
+                <td>{{contestant.payedAt | date:'medium'}}</td>
+                <td>{{contestant.token}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../contestant', contestant.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'contestant/'+ contestant.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'contestant/'+ contestant.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

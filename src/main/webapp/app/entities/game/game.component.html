@@ -1,0 +1,96 @@
+<div>
+    <h2>
+        <span>Games</span>
+        <button class="btn btn-primary float-right jh-create-entity create-game" [routerLink]="['/', { outlets: { popup: ['game-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Game
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="games">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Status</span></th>
+            <th><span>Calculated</span></th>
+            <th><span>T 1 P 1</span></th>
+            <th><span>T 1 P 2</span></th>
+            <th><span>T 2 P 1</span></th>
+            <th><span>T 2 P 2</span></th>
+            <th><span>Points</span></th>
+            <th><span>Round</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let game of games ;trackBy: trackId">
+                <td><a [routerLink]="['../game', game.id ]">{{game.id}}</a></td>
+                <td>{{game.status}}</td>
+                <td>{{game.calculated}}</td>
+                <td>
+                    <div *ngIf="game.t1P1">
+                        <a [routerLink]="['../contestant', game.t1P1?.id ]" >{{game.t1P1?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="game.t1P2">
+                        <a [routerLink]="['../contestant', game.t1P2?.id ]" >{{game.t1P2?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="game.t2P1">
+                        <a [routerLink]="['../contestant', game.t2P1?.id ]" >{{game.t2P1?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="game.t2P2">
+                        <a [routerLink]="['../contestant', game.t2P2?.id ]" >{{game.t2P2?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="game.points">
+                        <a [routerLink]="['../game-points', game.points?.id ]" >{{game.points?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="game.round">
+                        <a [routerLink]="['../round', game.round?.id ]" >{{game.round?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../game', game.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'game/'+ game.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'game/'+ game.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

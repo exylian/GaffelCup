@@ -1,0 +1,79 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myGameLabel">Create or edit a Game</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!game.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="game.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="game.status" id="field_status" >
+                <option value="OPEN">OPEN</option>
+                <option value="CLOSED">CLOSED</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_calculated">Calculated</label>
+            <input type="checkbox" class="form-control" name="calculated" id="field_calculated"
+                [(ngModel)]="game.calculated" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_t1P1">T 1 P 1</label>
+            <select class="form-control" id="field_t1P1" name="t1P1" [(ngModel)]="game.t1P1" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="contestantOption.id === game.t1P1?.id ? game.t1P1 : contestantOption" *ngFor="let contestantOption of contestants; trackBy: trackContestantById">{{contestantOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_t1P2">T 1 P 2</label>
+            <select class="form-control" id="field_t1P2" name="t1P2" [(ngModel)]="game.t1P2" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="contestantOption.id === game.t1P2?.id ? game.t1P2 : contestantOption" *ngFor="let contestantOption of contestants; trackBy: trackContestantById">{{contestantOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_t2P1">T 2 P 1</label>
+            <select class="form-control" id="field_t2P1" name="t2P1" [(ngModel)]="game.t2P1" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="contestantOption.id === game.t2P1?.id ? game.t2P1 : contestantOption" *ngFor="let contestantOption of contestants; trackBy: trackContestantById">{{contestantOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_t2P2">T 2 P 2</label>
+            <select class="form-control" id="field_t2P2" name="t2P2" [(ngModel)]="game.t2P2" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="contestantOption.id === game.t2P2?.id ? game.t2P2 : contestantOption" *ngFor="let contestantOption of contestants; trackBy: trackContestantById">{{contestantOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_points">Points</label>
+            <select class="form-control" id="field_points" name="points" [(ngModel)]="game.points" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="gamePointsOption.id === game.points?.id ? game.points : gamePointsOption" *ngFor="let gamePointsOption of gamepoints; trackBy: trackGamePointsById">{{gamePointsOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_round">Round</label>
+            <select class="form-control" id="field_round" name="round" [(ngModel)]="game.round" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="roundOption.id === game.round?.id ? game.round : roundOption" *ngFor="let roundOption of rounds; trackBy: trackRoundById">{{roundOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

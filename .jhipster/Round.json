@@ -1,0 +1,25 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "OPEN,CLOSED"
+        },
+        {
+            "fieldName": "finishedAt",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20171212103828",
+    "entityTableName": "round",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,84 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myContestantLabel">Create or edit a Contestant</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!contestant.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="contestant.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastName">Last Name</label>
+            <input type="text" class="form-control" name="lastName" id="field_lastName"
+                [(ngModel)]="contestant.lastName" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_firstName">First Name</label>
+            <input type="text" class="form-control" name="firstName" id="field_firstName"
+                [(ngModel)]="contestant.firstName" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_eMail">E Mail</label>
+            <input type="text" class="form-control" name="eMail" id="field_eMail"
+                [(ngModel)]="contestant.eMail" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_strength">Strength</label>
+            <select class="form-control" name="strength" [(ngModel)]="contestant.strength" id="field_strength" >
+                <option value="LOW">LOW</option>
+                <option value="LOWMID">LOWMID</option>
+                <option value="MID">MID</option>
+                <option value="MIDHIGH">MIDHIGH</option>
+                <option value="HIGH">HIGH</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_totalPoints">Total Points</label>
+            <input type="number" class="form-control" name="totalPoints" id="field_totalPoints"
+                [(ngModel)]="contestant.totalPoints" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_confirmed">Confirmed</label>
+            <input type="checkbox" class="form-control" name="confirmed" id="field_confirmed"
+                [(ngModel)]="contestant.confirmed" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_confirmedAt">Confirmed At</label>
+            <div class="d-flex">
+                <input id="field_confirmedAt" type="datetime-local" class="form-control" name="confirmedAt" [(ngModel)]="contestant.confirmedAt"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_payed">Payed</label>
+            <input type="checkbox" class="form-control" name="payed" id="field_payed"
+                [(ngModel)]="contestant.payed" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_payedAt">Payed At</label>
+            <div class="d-flex">
+                <input id="field_payedAt" type="datetime-local" class="form-control" name="payedAt" [(ngModel)]="contestant.payedAt"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_token">Token</label>
+            <input type="text" class="form-control" name="token" id="field_token"
+                [(ngModel)]="contestant.token" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>
