@@ -1,0 +1,59 @@
+entity Contestant {
+	lastName String,
+    firstName String,
+    eMail String,
+    strength Strength,
+    totalPoints Integer,
+    confirmed Boolean,
+    confirmedAt ZonedDateTime,
+    payed Boolean,
+    payedAt ZonedDateTime,
+    token String
+}
+
+entity Round {
+    name String,
+    status Status,
+    finishedAt ZonedDateTime
+}
+
+entity Game {
+    status Status,
+    calculated Boolean,
+    t1P1 Contestant,
+    t1P2 Contestant,
+    t2P1 Contestant,
+    t2P2 Contestant,
+    points GamePoints,
+    round Round
+}
+
+entity GamePoints {
+	s1T1 Integer,
+    s1T2 Integer,
+    s2T1 Integer,
+    s2T2 Integer,
+    s3T1 Integer,
+    s3T2 Integer
+}
+
+enum Status {
+	OPEN, CLOSED
+}
+
+enum Strength {
+    LOW, LOWMID, MID, MIDHIGH, HIGH
+}
+
+relationship ManyToOne {
+	Game{t1P1} to Contestant,
+    Game{t1P2} to Contestant,
+    Game{t2P1} to Contestant,
+    Game{t2P2} to Contestant,
+    Game{points} to GamePoints,
+    Game{round} to Round
+}
+
+
+
+
