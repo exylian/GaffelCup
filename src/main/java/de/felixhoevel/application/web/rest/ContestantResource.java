@@ -3,10 +3,14 @@ package de.felixhoevel.application.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import de.felixhoevel.application.domain.Contestant;
 
+import de.felixhoevel.application.domain.enumeration.Strength;
 import de.felixhoevel.application.repository.ContestantRepository;
+import de.felixhoevel.application.service.MailService;
 import de.felixhoevel.application.web.rest.errors.BadRequestAlertException;
 import de.felixhoevel.application.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import org.hibernate.id.GUIDGenerator;
+import org.hibernate.id.UUIDGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +19,10 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * REST controller for managing Contestant.
@@ -30,9 +36,13 @@ public class ContestantResource {
     private static final String ENTITY_NAME = "contestant";
 
     private final ContestantRepository contestantRepository;
+    private final MailService mailService;
 
-    public ContestantResource(ContestantRepository contestantRepository) {
+
+
+    public ContestantResource(ContestantRepository contestantRepository, MailService mailService) {
         this.contestantRepository = contestantRepository;
+        this.mailService = mailService;
     }
 
     /**
@@ -115,5 +125,38 @@ public class ContestantResource {
         log.debug("REST request to delete Contestant : {}", id);
         contestantRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    /**
+     *  REGISTER Contestant
+     * @param contestant
+     * @return
+     * @throws URISyntaxException
+     */
+    @PostMapping("/contestants/register")
+    @Timed
+    public ResponseEntity<Contestant> registerContestant(@RequestBody Contestant contestant) throws URISyntaxException {
+        log.debug("REST request to save Contestant : {}", contestant);
+        if (contestant.getId() != null) {
+            throw new BadRequestAlertException("A new contestant cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        List<Contestant> all = contestantRepository.findAll();
+        for(Iterator<Contestant> i = all.iterator(); i.hasNext();){
+           Contestant test = i.next();
+           if (test.geteMail().equalsIgnoreCase(contestant.geteMail())){
+               throw new BadRequestAlertException("Eine Anmeldung mit dieser E-Mail existiert bereits!", ENTITY_NAME, "emailexists");
+           }
+        }
+
+        contestant.setToken(UUID.randomUUID().toString());
+        contestant.setConfirmed(false);
+        contestant.setPayed(false);
+        contestant.setStrength(Strength.MID);
+        contestant.setTotalPoints(0);
+        Contestant result = contestantRepository.save(contestant);
+        mailService.sendRegistrationMail(contestant);
+        return ResponseEntity.created(new URI("/api/contestants/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .body(result);
     }
 }

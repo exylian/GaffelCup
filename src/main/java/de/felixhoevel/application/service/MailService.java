@@ -1,5 +1,6 @@
 package de.felixhoevel.application.service;
 
+import de.felixhoevel.application.domain.Contestant;
 import de.felixhoevel.application.domain.User;
 
 import io.github.jhipster.config.JHipsterProperties;
@@ -29,6 +30,8 @@ public class MailService {
     private final Logger log = LoggerFactory.getLogger(MailService.class);
 
     private static final String USER = "user";
+
+    private static final String CONTESTANT = "contestant";
 
     private static final String BASE_URL = "baseUrl";
 
@@ -84,6 +87,17 @@ public class MailService {
         sendEmail(user.getEmail(), subject, content, false, true);
 
     }
+    @Async
+    public void sendEmailFromTemplateToContestant(Contestant contestant, String templateName, String titleKey) {
+        Locale locale = Locale.forLanguageTag("DE");
+        Context context = new Context(locale);
+        context.setVariable(CONTESTANT, contestant);
+        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
+        sendEmail(contestant.geteMail(), subject, content, false, true);
+
+    }
 
     @Async
     public void sendActivationEmail(User user) {
@@ -101,5 +115,17 @@ public class MailService {
     public void sendPasswordResetMail(User user) {
         log.debug("Sending password reset email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "passwordResetEmail", "email.reset.title");
+    }
+
+    @Async
+    public void sendRegistrationMail(Contestant contestant) {
+        log.debug("Sending registration email to '{}'", contestant.geteMail());
+        sendEmailFromTemplateToContestant(contestant, "registrationEmail", "email.registration.title");
+    }
+
+    @Async
+    public void sendConfirmationMail(Contestant contestant){
+        log.debug("Sending confirmation email to '{}'", contestant.geteMail());
+        sendEmailFromTemplateToContestant(contestant, "confirmationEmail", "email.confirmation.title");
     }
 }

@@ -5,19 +5,28 @@ import { SERVER_API_URL } from '../../app.constants';
 
 import { JhiDateUtils } from 'ng-jhipster';
 
-import { Contestant } from './contestant.model';
+import {Contestant, Strength} from './contestant.model';
 import { ResponseWrapper, createRequestOption } from '../../shared';
+import { UUID } from 'angular2-uuid';
 
 @Injectable()
 export class ContestantService {
 
     private resourceUrl = SERVER_API_URL + 'api/contestants';
+    private registerUrl = SERVER_API_URL + 'api/contestants/register';
 
     constructor(private http: Http, private dateUtils: JhiDateUtils) { }
 
     create(contestant: Contestant): Observable<Contestant> {
         const copy = this.convert(contestant);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
+            const jsonResponse = res.json();
+            return this.convertItemFromServer(jsonResponse);
+        });
+    }
+    register(contestant: Contestant): Observable<Contestant> {
+        const copy = this.convert(contestant);
+        return this.http.post(this.registerUrl, copy).map((res: Response) => {
             const jsonResponse = res.json();
             return this.convertItemFromServer(jsonResponse);
         });

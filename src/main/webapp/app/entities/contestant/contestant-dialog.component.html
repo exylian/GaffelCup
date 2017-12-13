@@ -15,17 +15,17 @@
         <div class="form-group">
             <label class="form-control-label" for="field_lastName">Last Name</label>
             <input type="text" class="form-control" name="lastName" id="field_lastName"
-                [(ngModel)]="contestant.lastName" />
+                [(ngModel)]="contestant.lastName" readonly />
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_firstName">First Name</label>
             <input type="text" class="form-control" name="firstName" id="field_firstName"
-                [(ngModel)]="contestant.firstName" />
+                [(ngModel)]="contestant.firstName" readonly />
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_eMail">E Mail</label>
             <input type="text" class="form-control" name="eMail" id="field_eMail"
-                [(ngModel)]="contestant.eMail" />
+                [(ngModel)]="contestant.eMail" readonly />
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_strength">Strength</label>
@@ -40,17 +40,17 @@
         <div class="form-group">
             <label class="form-control-label" for="field_totalPoints">Total Points</label>
             <input type="number" class="form-control" name="totalPoints" id="field_totalPoints"
-                [(ngModel)]="contestant.totalPoints" />
+                [(ngModel)]="contestant.totalPoints" readonly />
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_confirmed">Confirmed</label>
             <input type="checkbox" class="form-control" name="confirmed" id="field_confirmed"
-                [(ngModel)]="contestant.confirmed" />
+                [(ngModel)]="contestant.confirmed" readonly />
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_confirmedAt">Confirmed At</label>
             <div class="d-flex">
-                <input id="field_confirmedAt" type="datetime-local" class="form-control" name="confirmedAt" [(ngModel)]="contestant.confirmedAt"
+                <input id="field_confirmedAt" type="datetime-local" class="form-control" name="confirmedAt" [(ngModel)]="contestant.confirmedAt" readonly
                 />
             </div>
         </div>
@@ -62,14 +62,14 @@
         <div class="form-group">
             <label class="form-control-label" for="field_payedAt">Payed At</label>
             <div class="d-flex">
-                <input id="field_payedAt" type="datetime-local" class="form-control" name="payedAt" [(ngModel)]="contestant.payedAt"
+                <input id="field_payedAt" type="datetime-local" class="form-control" name="payedAt" [(ngModel)]="contestant.payedAt" readonly
                 />
             </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_token">Token</label>
             <input type="text" class="form-control" name="token" id="field_token"
-                [(ngModel)]="contestant.token" />
+                [(ngModel)]="contestant.token" readonly />
         </div>
 
     </div>

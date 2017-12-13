@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{email.confirmation.title}"></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="shortcut icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+    </head>
+    <body>
+        <p th:text="#{email.confirmation.greeting(${contestant.firstName})}">
+        </p>
+        <p th:text="#{email.confirmation.text1}">
+        </p>
+        <p>
+            <a th:href="@{|${baseUrl}/#/unconfirm?key=${contestant.token}|}"
+               th:text="@{|${baseUrl}/#/unconfirm?key=${contestant.token}|}">Activation Link</a>
+        </p>
+        <p>
+            <span th:text="#{email.confirmation.text2}"> </span>
+            <br/>
+            <em th:text="#{email.signature}"></em>
+        </p>
+    </body>
+</html>

@@ -35,22 +35,22 @@
                 <td>{{game.calculated}}</td>
                 <td>
                     <div *ngIf="game.t1P1">
-                        <a [routerLink]="['../contestant', game.t1P1?.id ]" >{{game.t1P1?.id}}</a>
+                        <a [routerLink]="['../contestant', game.t1P1?.id ]" >{{game.t1P1?.lastName}}, {{game.t1P1?.firstName}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="game.t1P2">
-                        <a [routerLink]="['../contestant', game.t1P2?.id ]" >{{game.t1P2?.id}}</a>
+                        <a [routerLink]="['../contestant', game.t1P2?.id ]" >{{game.t1P2?.lastName}}, {{game.t1P2?.firstName}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="game.t2P1">
-                        <a [routerLink]="['../contestant', game.t2P1?.id ]" >{{game.t2P1?.id}}</a>
+                        <a [routerLink]="['../contestant', game.t2P1?.id ]" >{{game.t2P1?.lastName}}, {{game.t2P1?.firstName}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="game.t2P2">
-                        <a [routerLink]="['../contestant', game.t2P2?.id ]" >{{game.t2P2?.id}}</a>
+                        <a [routerLink]="['../contestant', game.t2P2?.id ]" >{{game.t2P2?.lastName}}, {{game.t2P2?.firstName}}</a>
                     </div>
                 </td>
                 <td>

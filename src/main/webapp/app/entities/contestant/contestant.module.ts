@@ -15,6 +15,8 @@ import {
     contestantPopupRoute,
 } from './';
 
+import {ContestantRegisterDialogComponent, ContestantRegisterPopupComponent} from './register/contestant-register-dialog.component';
+
 const ENTITY_STATES = [
     ...contestantRoute,
     ...contestantPopupRoute,
@@ -32,6 +34,8 @@ const ENTITY_STATES = [
         ContestantDeleteDialogComponent,
         ContestantPopupComponent,
         ContestantDeletePopupComponent,
+        ContestantRegisterDialogComponent,
+        ContestantRegisterPopupComponent
     ],
     entryComponents: [
         ContestantComponent,
@@ -39,6 +43,8 @@ const ENTITY_STATES = [
         ContestantPopupComponent,
         ContestantDeleteDialogComponent,
         ContestantDeletePopupComponent,
+        ContestantRegisterDialogComponent,
+        ContestantRegisterPopupComponent
     ],
     providers: [
         ContestantService,

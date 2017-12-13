@@ -6,3 +6,4 @@ export * from './contestant-delete-dialog.component';
 export * from './contestant-detail.component';
 export * from './contestant.component';
 export * from './contestant.route';
+export * from './register/contestant-register-dialog.component';
