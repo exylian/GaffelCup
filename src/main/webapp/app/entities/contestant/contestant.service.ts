@@ -13,7 +13,7 @@ import { UUID } from 'angular2-uuid';
 export class ContestantService {
 
     private resourceUrl = SERVER_API_URL + 'api/contestants';
-    private registerUrl = SERVER_API_URL + 'api/contestants/register';
+    private registerUrl = SERVER_API_URL + 'api/public/contestants/register';
 
     constructor(private http: Http, private dateUtils: JhiDateUtils) { }
 

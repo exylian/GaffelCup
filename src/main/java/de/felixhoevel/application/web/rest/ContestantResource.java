@@ -5,8 +5,10 @@ import de.felixhoevel.application.domain.Contestant;
 
 import de.felixhoevel.application.domain.enumeration.Strength;
 import de.felixhoevel.application.repository.ContestantRepository;
+import de.felixhoevel.application.service.ContestantService;
 import de.felixhoevel.application.service.MailService;
 import de.felixhoevel.application.web.rest.errors.BadRequestAlertException;
+import de.felixhoevel.application.web.rest.errors.InternalServerErrorException;
 import de.felixhoevel.application.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.hibernate.id.GUIDGenerator;
@@ -37,12 +39,14 @@ public class ContestantResource {
 
     private final ContestantRepository contestantRepository;
     private final MailService mailService;
+    private final ContestantService contestantService;
 
 
 
-    public ContestantResource(ContestantRepository contestantRepository, MailService mailService) {
+    public ContestantResource(ContestantRepository contestantRepository, MailService mailService, ContestantService contestantService) {
         this.contestantRepository = contestantRepository;
         this.mailService = mailService;
+        this.contestantService = contestantService;
     }
 
     /**
@@ -127,36 +131,5 @@ public class ContestantResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    /**
-     *  REGISTER Contestant
-     * @param contestant
-     * @return
-     * @throws URISyntaxException
-     */
-    @PostMapping("/contestants/register")
-    @Timed
-    public ResponseEntity<Contestant> registerContestant(@RequestBody Contestant contestant) throws URISyntaxException {
-        log.debug("REST request to save Contestant : {}", contestant);
-        if (contestant.getId() != null) {
-            throw new BadRequestAlertException("A new contestant cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-        List<Contestant> all = contestantRepository.findAll();
-        for(Iterator<Contestant> i = all.iterator(); i.hasNext();){
-           Contestant test = i.next();
-           if (test.geteMail().equalsIgnoreCase(contestant.geteMail())){
-               throw new BadRequestAlertException("Eine Anmeldung mit dieser E-Mail existiert bereits!", ENTITY_NAME, "emailexists");
-           }
-        }
 
-        contestant.setToken(UUID.randomUUID().toString());
-        contestant.setConfirmed(false);
-        contestant.setPayed(false);
-        contestant.setStrength(Strength.MID);
-        contestant.setTotalPoints(0);
-        Contestant result = contestantRepository.save(contestant);
-        mailService.sendRegistrationMail(contestant);
-        return ResponseEntity.created(new URI("/api/contestants/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
-    }
 }

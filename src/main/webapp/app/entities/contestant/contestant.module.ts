@@ -13,6 +13,10 @@ import {
     ContestantDeleteDialogComponent,
     contestantRoute,
     contestantPopupRoute,
+    ConfirmComponent,
+    ConfirmService,
+    UnconfirmService,
+    UnconfirmComponent
 } from './';
 
 import {ContestantRegisterDialogComponent, ContestantRegisterPopupComponent} from './register/contestant-register-dialog.component';
@@ -35,7 +39,9 @@ const ENTITY_STATES = [
         ContestantPopupComponent,
         ContestantDeletePopupComponent,
         ContestantRegisterDialogComponent,
-        ContestantRegisterPopupComponent
+        ContestantRegisterPopupComponent,
+        ConfirmComponent,
+        UnconfirmComponent
     ],
     entryComponents: [
         ContestantComponent,
@@ -44,11 +50,15 @@ const ENTITY_STATES = [
         ContestantDeleteDialogComponent,
         ContestantDeletePopupComponent,
         ContestantRegisterDialogComponent,
-        ContestantRegisterPopupComponent
+        ContestantRegisterPopupComponent,
+        ConfirmComponent,
+        UnconfirmComponent
     ],
     providers: [
         ContestantService,
         ContestantPopupService,
+        ConfirmService,
+        UnconfirmService,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

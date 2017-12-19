@@ -24,15 +24,35 @@ public class ContestantService {
         this.contestantRepository = contestantRepository;
     }
 
+    /**
+     * Confirm registrated Contestant
+     * @param token
+     * @return
+     */
     public Optional<Contestant> confirmRegistration(String token) {
         log.debug("Confirming contestant with token {}", token);
         return contestantRepository.findOneByToken(token)
             .map(contestant -> {
-                // activate given user for the registration key.
                 contestant.setConfirmed(true);
                 contestant.setConfirmedAt(ZonedDateTime.now());
 
                 log.debug("Confirmed contestant: {}", contestant);
+                return contestant;
+            });
+    }
+
+    /**
+     * Unconfirm registrated Contestant and delete the contestant
+     * @param token
+     * @return
+     */
+    public Optional<Contestant> unconfirmContestant(String token) {
+        log.debug("Unconfirming & deleting contestant with token {}", token);
+        return contestantRepository.findOneByToken(token)
+            .map(contestant -> {
+
+                contestantRepository.delete(contestant.getId());
+                log.debug("Deleted contestant: {}", contestant);
                 return contestant;
             });
     }

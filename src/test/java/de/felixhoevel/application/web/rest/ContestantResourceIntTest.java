@@ -4,6 +4,7 @@ import de.felixhoevel.application.GaffelCupApp;
 
 import de.felixhoevel.application.domain.Contestant;
 import de.felixhoevel.application.repository.ContestantRepository;
+import de.felixhoevel.application.service.ContestantService;
 import de.felixhoevel.application.service.MailService;
 import de.felixhoevel.application.web.rest.errors.ExceptionTranslator;
 
@@ -93,6 +94,9 @@ public class ContestantResourceIntTest {
     @Autowired
     private MailService mailService;
 
+    @Autowired
+    private ContestantService contestantService;
+
     private MockMvc restContestantMockMvc;
 
     private Contestant contestant;
@@ -100,7 +104,7 @@ public class ContestantResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ContestantResource contestantResource = new ContestantResource(contestantRepository, mailService);
+        final ContestantResource contestantResource = new ContestantResource(contestantRepository, mailService, contestantService);
         this.restContestantMockMvc = MockMvcBuilders.standaloneSetup(contestantResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

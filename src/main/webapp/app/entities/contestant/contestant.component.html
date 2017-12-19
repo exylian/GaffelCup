@@ -35,11 +35,21 @@
                 <td>{{contestant.lastName}}</td>
                 <td>{{contestant.firstName}}</td>
                 <td>{{contestant.eMail}}</td>
-                <td>{{contestant.strength}}</td>
+                <td>
+                    <div *ngIf="contestant.strength == 'LOW'"><span class="fa fa-star-o"></span></div>
+                    <div *ngIf="contestant.strength == 'LOWMID'"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span></div>
+                    <div *ngIf="contestant.strength == 'MID'"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span></div>
+                    <div *ngIf="contestant.strength == 'MIDHIGH'"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span></div>
+                    <div *ngIf="contestant.strength == 'HIGH'"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span></div>
+                </td>
                 <td>{{contestant.totalPoints}}</td>
-                <td>{{contestant.confirmed}}</td>
+                <td>
+                    <span *ngIf="contestant.confirmed == true" class="fa fa-check text-success"></span>
+                    <span *ngIf="contestant.confirmed == false" class="fa fa-ban text-danger"></span>
+                </td>
                 <td>{{contestant.confirmedAt | date:'medium'}}</td>
-                <td>{{contestant.payed}}</td>
+                <td><span *ngIf="contestant.payed == true" class="fa fa-check text-success"></span>
+                    <span *ngIf="contestant.payed == false" class="fa fa-ban text-danger"></span></td>
                 <td>{{contestant.payedAt | date:'medium'}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

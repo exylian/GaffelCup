@@ -6,6 +6,8 @@ import { ContestantDetailComponent } from './contestant-detail.component';
 import { ContestantPopupComponent } from './contestant-dialog.component';
 import { ContestantDeletePopupComponent } from './contestant-delete-dialog.component';
 import {ContestantRegisterPopupComponent} from './register/contestant-register-dialog.component';
+import { activateRoute } from './confirm/confirm.route';
+import { unconfirmRoute } from './unconfirm/unconfirm.route';
 
 export const contestantRoute: Routes = [
     {
@@ -25,6 +27,8 @@ export const contestantRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     },
+    activateRoute,
+    unconfirmRoute,
 ];
 
 export const contestantPopupRoute: Routes = [

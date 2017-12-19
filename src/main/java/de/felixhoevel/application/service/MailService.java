@@ -95,7 +95,7 @@ public class MailService {
         context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, locale);
-        sendEmail(contestant.geteMail(), subject, content, false, true);
+        sendEmail(contestant.geteMail(), subject, content, true, true);
 
     }
 
@@ -127,5 +127,11 @@ public class MailService {
     public void sendConfirmationMail(Contestant contestant){
         log.debug("Sending confirmation email to '{}'", contestant.geteMail());
         sendEmailFromTemplateToContestant(contestant, "confirmationEmail", "email.confirmation.title");
+    }
+
+    @Async
+    public void sendDeletionMail(Contestant contestant) {
+        log.debug("Sending deletion email to '{}'", contestant.geteMail());
+        sendEmailFromTemplateToContestant(contestant, "deletionEmail", "email.delete.title");
     }
 }
